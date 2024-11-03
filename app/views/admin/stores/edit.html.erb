@@ -1,10 +1,11 @@
 <!--管理者用店舗登録編集ページ-->
-<%= render 'layouts/errors', obj: @store %>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-8 px-sm-0 offset-sm-1">
     <%= form_with model: @store, url: admin_store_path, method: :patch do |f| %>
     <h2>店舗登録編集</h2>
+    <%= render 'layouts/errors', obj: @store %>
       <table>
         <tr>
           <div class="form-group">

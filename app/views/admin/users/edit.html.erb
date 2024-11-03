@@ -1,0 +1,49 @@
+<div class='container my-5'>
+  
+  <h4 class='row mb-5'>
+    <span class='heading-title'><%= @user.family_name + @user.first_name %>さんの会員情報編集</span>
+  </h4>
+  
+  <%= render 'layouts/errors', obj: @user %>
+  
+  <%= form_with model: @user, url: admin_user_path, method: :patch, class: 'ml-5' do |f| %>
+  
+    <table class="table table-borderless">
+        <tr>
+          <th>会員ID</th>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= f.text_field :family_name, size: "16" %> &nbsp;&nbsp;&nbsp;&nbsp;<%= f.text_field :first_name, size: "16" %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= f.text_field :family_name_kana, size: "16" %> &nbsp;&nbsp;&nbsp;&nbsp;<%= f.text_field :first_name_kana, size: "16" %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= f.text_field :email, size: "16" %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効"  %>
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会" %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center">
+            <%= f.submit "変更を保存", class: "btn btn-success" %>
+          </td>
+          <td class="col-xs-5 ml-5">
+            <%= link_to "会員の物理削除", admin_user_path(@user.id), method: :delete,  class: "btn btn-primary","data-confirm" => "本当に削除しますか？" %>
+          </div>
+        </tr>
+      </table>
+
+    <% end %>
+  
+</div>

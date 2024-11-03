@@ -1,0 +1,54 @@
+<div class='container my-5'>
+  <h4 class='row mb-5'>
+    <span class='heading-title'><%= @user.family_name + @user.first_name %>さんの会員詳細</span>
+  </h4>
+
+  <div class='row d-flex justify-content-center mb-3'>
+    <label class='col-2'>会員ID</label>
+    <div class='col-5'>
+      <%= @user.id %>
+    </div>
+  </div>
+  
+  <div class='row d-flex justify-content-center mb-3'>
+    <label class='col-2'>氏名</label>
+    <div class='col-5'>
+      <%= @user.family_name + @user.first_name %>
+    </div>
+  </div>
+  
+  <div class='row d-flex justify-content-center mb-3'>
+    <label class='col-2'>フリガナ</label>
+    <div class='col-5'>
+      <%= @user.family_name_kana + @user.first_name_kana %>
+    </div>
+  </div>
+  
+  <div class='row d-flex justify-content-center mb-3'>
+    <label class='col-2'>メールアドレス</label>
+    <div class='col-5'>
+      <%= @user.email %>
+    </div>
+  </div>
+  
+  
+  <div class='row d-flex justify-content-center mb-3'>
+    <label class='col-2'>会員ステータス</label>
+    <div class='col-5'>
+      <% if @user.is_deleted == false %>
+        <strong class='text-success'>有効</strong>
+      <% else %>
+        <strong class='text-secondary'>退会</strong>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class='row d-flex justify-content-center'>
+    <div class='col-2'></div>
+    <div class='col-5'>
+      <%= link_to '編集する', edit_admin_user_path(@user.id), class: 'btn btn-success' %>
+      <%= link_to 'レビュー履歴一覧', "#", class: 'btn btn-primary ml-5' %>
+    </div>
+  </div>
+  
+</div>

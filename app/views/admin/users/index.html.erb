@@ -1,0 +1,43 @@
+<div class='container my-5'>
+  
+  <h4 class='row mb-5'>
+    <span class='heading-title'>会員一覧</span>
+  </h4>
+  
+  <div class='row d-flex justify-content-center mb-5'>
+    <table class='table'>
+      <thead class='table-secondary'>
+        <tr>
+          <th>会員ID</th>
+          <th colspan='2'>氏名</th>
+          <th colspan='2'>メールアドレス</th>
+          <th colspan='2'>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td colspan='2'>
+              <%= link_to admin_user_path(user.id) do %>
+                <%= user.family_name %><%= user.first_name %>
+              <% end %>
+            </td>
+            <td colspan='2'><%= user.email %></td>
+            <td colspan='2'>
+              <% if user.is_deleted == false %>
+                <strong class='text-success'>有効</strong>
+              <% else %>
+                <strong class='text-secondary'>退会</strong>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="row justify-content-center">
+   <%= paginate @users %>
+  </div>
+</div>
