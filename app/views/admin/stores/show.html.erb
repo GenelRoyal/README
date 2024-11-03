@@ -1,0 +1,57 @@
+<!--管理者用店舗登録詳細ページ-->
+
+<div class="container my-5">
+  <h4 class="row mb-5">
+    <span class="heading-title">店舗詳細</span>
+  </h4>
+  <div class="row d-flex align-items-center justify-content-center ">
+    <div class="col-md-12 col-lg-4 text-center pb-3">
+    <%= image_tag @store.get_image(300,200) %>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 m-4">
+      <div class="row mb-2">
+        <label class="col-md-5 col-lg-4">店舗名</label>
+        <div class="col-md-7 col-lg-8" >
+          <%= @store.name %>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-md-5 col-lg-4">住所</label>
+        <div class="col-md-7 col-lg-8" >
+          <%= @store.address %>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <label class="col-md-5 col-lg-4">電話番号</label>
+        <div class="col-md-7 col-lg-8" >
+          <%= @store.tell_number %>
+        </div>
+      </div>
+      <div class="row mb-2 align-items-center">
+        <label class="col-md-5 col-lg-4 ">価格</label>
+        <div class="col-md-7 col-lg-8 " >
+          <%= @store.price.to_s(:delimited) %>円
+        </div>
+      </div>
+      <div class="row mb-2 align-items-center">
+        <label class="col-md-5 col-lg-4 ">営業時間</label>
+        <div class="col-md-7 col-lg-8 " >
+          <%= @store.business_hours %>
+        </div>
+      </div>
+      <div class="row mb-2 align-items-center">
+        <label class="col-md-5 col-lg-4 ">説明</label>
+        <div class="col-md-7 col-lg-8 " >
+          <%= @store.content %>
+        </div>
+      </div>
+
+  <!--編集するボタン-->
+  <div class="row mb-4">
+    <div class="col-md-4 col-lg-5"></div>
+    <div class="col-md-5 col-lg-4">
+      <%= link_to "編集する", edit_admin_store_path, class: "btn btn-success font-weight-bold px-5 py-2 " %>
+    </div>
+  </div>
+  
+</div>

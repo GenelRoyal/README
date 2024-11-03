@@ -1,0 +1,60 @@
+<!--管理者用店舗登録編集ページ-->
+<%= render 'layouts/errors', obj: @store %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+    <%= form_with model: @store, url: admin_store_path, method: :patch do |f| %>
+    <h2>店舗登録編集</h2>
+      <table>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :店舗画像 %></th>
+            <th><%= f.file_field :image, placeholder: "ファイルを選択", accept: "image/*" %></th>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :店舗名 %></th>
+            <td><%= f.text_field :name, placeholder:"君に出会えて" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :住所 %></th>
+            <td><%= f.text_field :address, placeholder:"愛知県名古屋市中川区" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :電話番号 %></th>
+            <td><%= f.text_field :tell_number, placeholder:"098-XXXX-XXXX" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :価格 %></th>
+            <td><%= f.text_field :price, placeholder:"1000" %>円</td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :営業時間 %></th>
+            <td><%= f.text_area :business_hours, placeholder: "XX:XX~XX:XX 定休日"%></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :店舗説明 %></th>
+            <td><%= f.text_area :content, placeholder:"座席数 駐車場有無" %></td>
+          </div>
+        </tr>
+        <tr>
+        <div class="form-action">
+          <th><%= f.submit "変更を保存", class:"btn btn-success" %></th>
+        </div>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
