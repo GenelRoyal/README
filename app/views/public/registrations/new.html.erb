@@ -1,11 +1,23 @@
 <div class='container my-5'>
 
   <h4 class='row mb-5'>
-    <span class='heading-title'>新規会員登録</span>
+    <strong><span class='heading-title'>新規会員登録</span></strong>
   </h4>
+  
+  <div>
+    <%= flash[:notice] %>
+  </div>
+  
+  <%= render 'layouts/errors', obj: @user %>
 
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
+    <div class="row my-1 form-group">
+      <label class='col-3'>プロフィール画像</label>
+      <div class="col-3">
+        <%= f.file_field :image, placeholder: "ファイルを選択", accept: "image/*" %>
+      </div>
+    </div>
 
     <div class="row my-1 form-group ">
       <label class='col-2'>名前</label>

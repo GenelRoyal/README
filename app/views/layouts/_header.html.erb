@@ -10,10 +10,10 @@
         <% if user_signed_in? %>
           <!--ユーザーがログインしている時 -->
           <li>
-            <%= link_to "マイページ", "#", class: "btn btn-outline-dark" %>
+            <%= link_to "マイページ", users_mypage_path, class: "btn btn-outline-dark" %>
           </li>
           <li>
-            <%= link_to "店舗一覧", "#", class: "btn btn-outline-dark" %>
+            <%= link_to "店舗一覧", stores_path, class: "btn btn-outline-dark" %>
           </li>
           <li>
             <%= link_to "いいね一覧", "#", class: "btn btn-outline-dark" %>
@@ -43,7 +43,7 @@
             <%= link_to "About", about_path, class: "btn btn-outline-dark" %>
           </li>
           <li>
-            <%= link_to "店舗一覧", "#", class: "btn btn-outline-dark" %>
+            <%= link_to "店舗一覧", stores_path, class: "btn btn-outline-dark" %>
           </li>
           <li>
             <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-dark" %>

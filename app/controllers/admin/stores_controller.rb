@@ -27,6 +27,12 @@ class Admin::StoresController < ApplicationController
   def edit
     @store = Store.find(params[:id])
   end
+  
+  def destroy
+    store = Store.find(params[:id])
+    store.destroy
+    redirect_to admin_stores_path
+  end
 
   def update
     @store = Store.find(params[:id])

@@ -1,0 +1,40 @@
+<div class="row my-5">
+    <div class="col-6 mt-5">
+      <div class="text-center">
+        <%= image_tag @store.get_image(300,300) || "no_image.jpg", width: 300, height: 200 %>
+        <div class="my-3">
+          <%= link_to "この店舗のレビューを見る", store_reviews_path(@store), class: "btn btn-success" %>
+        </div>
+
+        <% if user_signed_in? %>
+          <%= link_to "この店舗にレビューをする", "#", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-3 mt-5 ">
+      <h4 class="my-3">
+        <strong><%= @store.name %></strong>
+      </h4>
+      <h5 class="mb-3">
+        <%= @store.address %>
+      </h5>
+      <br>
+      
+      <h5 class="mb-3">
+        <%= @store.tell_number %>
+      </h5>
+      <h5 class="mb-3">
+        <%= @store.price.to_s(:delimited) %>円
+      </h5>
+      <h5 class="mb-3">
+        <%= @store.business_hours %>
+      </h5>
+      <h5 class="mb-3">
+        <%= @store.content %>
+      </h5>
+      <br>
+      
+    </div>
+    
+</div>

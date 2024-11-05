@@ -1,0 +1,20 @@
+<div class="row my-5">
+  <div class="col-9 mt-2">
+    <h3><strong>店舗一覧(全<%= @stores_all.count %>件)</strong></h3>
+
+    <div class="row">
+    <% @stores.each do |store| %>
+      <div class="col-md-3 mb-4">
+        <%= link_to store_path(store) do %>
+          <p><%= image_tag store.get_image(200, 150) || "no_image.jpg", width: 200, height: 150 %></p>
+        <% end %>
+        <p><strong>店舗名</strong>　<%= store.name %></p>
+        <p><strong>¥<%= store.price.to_s(:delimited) %></strong></p>
+      </div>
+    <% end %>
+  　</div>
+    <div class="row justify-content-center ">
+      <%= paginate @stores %>
+    </div>
+  </div>
+</div>
