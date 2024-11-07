@@ -19,4 +19,21 @@ class User < ApplicationRecord
     end
       image.variant(resize_to_limit: [width,height]).processed
   end
+  
+  GUEST_USER_EMAIL = "guest@example.jp"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.family_name = "ゲスト"
+      user.first_name = "ユーザー"
+      user.family_name_kana = "ゲスト"
+      user.first_name_kana = "ユーザー"
+    end
+  end
+  
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
+  
 end

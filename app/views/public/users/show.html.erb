@@ -1,5 +1,20 @@
 <div class='container my-5'>
 
   <h3 class='row mb-5'>
-    <strong><span class='heading-title'></span></strong>
+    <strong><span class='heading-title'><%= @user.family_name + @user.first_name %>さんの会員詳細</span></strong>
   </h3>
+  
+  <div class='row d-flex justify-content-center mb-3'>
+    <label class='col-2'>氏名</label>
+    <div class='col-5'>
+      <%= @user.family_name + @user.first_name %>
+    </div>
+  </div>
+  
+  <div class="">
+    口コミ一覧をここに１列４コマ<br>
+    ２列目も繰り返し<br>
+    １ページ計８コマでページネイト
+  </div>
+  
+</div>

@@ -8,7 +8,12 @@
     <div class='col-2'>
       <h4><strong>登録情報</strong></h4>
     </div>
+    
+    <!--ゲストユーザーは編集できなくしている-->
+    <% unless @user.guest_user? %>
       <%= link_to "編集する", users_information_edit_path, class:"col-2 btn btn-success" %>
+    <% end %>
+    
   </div>
 
   <table class="table table-bordered secondary row">
@@ -16,7 +21,7 @@
       <th class="col-3 table-secondary">プロフィール画像</th>
       <td class='col-6'><%= image_tag @user.get_image(300,200) %></td>
     </tr>
-    
+
     <tr class="col-6">
       <th class="col-3 table-secondary">氏名</th>
       <td class='col-6'><%= @user.family_name %>　<%= @user.first_name %></td>
