@@ -4,12 +4,6 @@
     <strong><span class='heading-title'>新規会員登録</span></strong>
   </h4>
   
-  <div>
-    <%= flash[:notice] %>
-  </div>
-  
-  <%= render 'layouts/errors', obj: @user %>
-
   <%= form_with model: @user, url: user_registration_path do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
     <div class="row my-1 form-group">

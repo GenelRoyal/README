@@ -30,11 +30,12 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = current_user
-    @user.update(is_deleted: true)
-    reset_session
-
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to root_path
+    if @user.update(is_deleted: true)
+      reset_session
+      redirect_to new_user_registration_path, notice: "退会が完了しました。またのご利用をお待ちしております。"
+    else
+      redirect_to edit_user_path(@user), alert: "退会処理に失敗しました。再度お試しください。"
+    end
   end
 
   private
