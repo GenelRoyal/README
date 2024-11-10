@@ -6,8 +6,12 @@ class ApplicationController < ActionController::Base
       when Admin
         admin_stores_path
       when User
-        root_path
+        users_mypage_path
     end
+  end
+
+  def after_sign_out_path_for(resource)
+    about_path
   end
 
   protected
