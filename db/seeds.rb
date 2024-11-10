@@ -6,7 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+puts "seedの実行を開始"
+
 Admin.find_or_create_by!(email: "admin@example.jp") do |admin|
-  admin.password = "123456"
-  admin.password_confirmation = "123456"
+  admin.password = ENV['SECRET_KEY']
+  admin.password_confirmation = ENV['SECRET_KEY']
 end
+
+puts "seedの実行が完了しました"
