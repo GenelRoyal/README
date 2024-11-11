@@ -1,0 +1,17 @@
+<h1>検索結果</h1>
+
+<% if @results.any? %>
+  <% if @target == "user" %>
+    <h2>会員検索結果</h2>
+    <% @results.each do |user| %>
+      <p><%= link_to user.name, user_path(user) %></p>
+    <% end %>
+  <% elsif @target == "store" %>
+    <h2>店舗検索結果</h2>
+    <% @results.each do |store| %>
+      <p><%= link_to store.content, store_path(store) %></p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>該当する結果は見つかりませんでした。</p>
+<% end %>

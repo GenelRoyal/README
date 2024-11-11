@@ -15,6 +15,15 @@
   <body>
     <!-- ヘッダー -->
     <%= render 'layouts/header' %>
+    <% if user_signed_in? %>
+    <div class="search-bar">
+      <%= form_with url: search_path, method: :get, local: true do %>
+        <%= select_tag :target, options_for_select([["ユーザー", "user"], ["店舗", "store"]]), prompt: "検索対象を選択" %>
+        <%= text_field_tag :keyword, params[:keyword], placeholder: "キーワードを入力" %>
+        <%= submit_tag "検索" %>
+      <% end %>
+    </div>
+    <% end %>
 
     <% flash.each do |key, message| %>
       <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %>">
