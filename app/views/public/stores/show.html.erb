@@ -1,40 +1,56 @@
 <div class="row my-5">
-    <div class="col-6 mt-5">
-      <div class="text-center">
-        <%= image_tag @store.get_image(300,300) || "no_image.jpg", width: 300, height: 200 %>
-        <div class="my-3">
-          <%= link_to "この店舗のレビューを見る", store_reviews_path(@store), class: "btn btn-success" %>
-        </div>
-
-        <% if user_signed_in? %>
-          <%= link_to "この店舗にレビューをする", "#", class: "btn btn-primary" %>
-        <% end %>
+  <div class="col-md-6 mt-5">
+    <div class="text-center">
+      <%= image_tag @store.get_image(300,300) || "no_image.jpg", width: 300, height: 200 %>
+      <div class="my-3">
+        <%= link_to "この店舗のレビューを見る", store_reviews_path(@store), class: "btn btn-success" %>
       </div>
     </div>
+  </div>
 
-    <div class="col-3 mt-5 ">
-      <h4 class="my-3">
-        <strong><%= @store.name %></strong>
-      </h4>
-      <h5 class="mb-3">
-        <%= @store.address %>
-      </h5>
-      <br>
-      
-      <h5 class="mb-3">
-        <%= @store.tell_number %>
-      </h5>
-      <h5 class="mb-3">
-        <%= @store.price.to_s(:delimited) %>円
-      </h5>
-      <h5 class="mb-3">
-        <%= @store.business_hours %>
-      </h5>
-      <h5 class="mb-3">
-        <%= @store.content %>
-      </h5>
-      <br>
-      
-    </div>
-    
+  <div class="col-md-6 mt-5">
+    <h4 class="my-3"><strong><%= @store.name %></strong></h4>
+    <p class="mb-3"><strong>住所:</strong> <%= @store.address %></p>
+    <p class="mb-3"><strong>電話番号:</strong> <%= @store.tell_number %></p>
+    <p class="mb-3"><strong>価格:</strong> <%= @store.price.to_s(:delimited) %>円</p>
+    <p class="mb-3"><strong>営業時間:</strong> <%= @store.business_hours %></p>
+    <p class="mb-3"><strong>説明:</strong> <%= @store.content %></p>
+  </div>
 </div>
+
+<% if user_signed_in? %>
+  <div class="row justify-content-center my-5">
+    <div class="col-md-8">
+      <%= form_with(model: [@store, @store.reviews.build], local: true) do |f| %>
+        <div class="card p-4">
+          <h5 class="text-center mb-4">レビュー投稿</h5>
+          <table class="table table-borderless">
+            <tr>
+              <td><%= f.label :rating, "評価", class: "form-label" %></td>
+              <td>
+                <div class="raty" data-score="0"></div> <!-- Raty.jsで星評価を作成 -->
+              </td>
+            </tr>
+            <tr>
+              <td><%= f.label :店舗画像, class: "form-label" %></td>
+              <td><%= f.file_field :image, placeholder: "ファイルを選択", accept: "image/*", class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :title, "タイトル", class: "form-label" %></td>
+              <td><%= f.text_field :title, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :content, "コメント", class: "form-label" %></td>
+              <td><%= f.text_area :content, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td colspan="2" class="text-center">
+                <%= f.submit "レビューを投稿する", class: "btn btn-primary mt-3" %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

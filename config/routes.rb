@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     resources :stores, only: [:index, :show] do
       resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     end
-
   end
 
   namespace :admin do
