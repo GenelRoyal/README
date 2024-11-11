@@ -4,12 +4,22 @@
   <% if @target == "user" %>
     <h2>会員検索結果</h2>
     <% @results.each do |user| %>
-      <p><%= link_to user.name, user_path(user) %></p>
+      <p>
+        名前: <%= link_to user.family_name + user.first_name, user_path(user) %>
+      </p>
     <% end %>
   <% elsif @target == "store" %>
     <h2>店舗検索結果</h2>
     <% @results.each do |store| %>
-      <p><%= link_to store.content, store_path(store) %></p>
+      <p>
+        店舗名: <%= link_to store.name, store_path(store) %><br>
+        住所: <%= store.address %><br>
+        電話番号: <%= store.tell_number %><br>
+        価格: ¥<%= store.price.to_s(:delimited) %><br>
+        営業時間: <%= store.business_hours %><br>
+        説明: <%= store.content %>
+      </p>
+
     <% end %>
   <% end %>
 <% else %>

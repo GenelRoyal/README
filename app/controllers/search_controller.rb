@@ -6,12 +6,13 @@ class SearchController < ApplicationController
     @target = params[:target]
 
     if @target == "user"
-      @results = User.where("name LIKE ?", "%#{@keyword}%")
+      @results = User.where("family_name LIKE ? OR first_name LIKE ? OR family_name_kana LIKE ? OR first_name_kana LIKE ?", 
+                            "%#{@keyword}%", "%#{@keyword}%", "%#{@keyword}%", "%#{@keyword}%")
     elsif @target == "store"
-      @results = Store.where("content LIKE ?", "%#{@keyword}%")
+      @results = Store.where("name LIKE ? OR address LIKE ? OR tell_number LIKE ? OR price LIKE ? OR business_hours LIKE ? OR content LIKE ?",
+                             "%#{@keyword}%", "%#{@keyword}%", "%#{@keyword}%", "%#{@keyword}%", "%#{@keyword}%", "%#{@keyword}%")
     else
       @results = []
     end
   end
-end
 end
