@@ -1,0 +1,59 @@
+<div class="container my-4">
+  <h3 class="mb-4">レビューを編集</h3>
+  
+  <div class="card shadow-sm p-4">
+    <%= form_with model: [@review.store, @review], local: true do |f| %>
+      <div class="form-group mb-3">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください" %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :rating, "評価" %>
+        <div id="raty-edit-<%= @review.id %>"></div>
+      </div>
+
+      <script>
+        {
+          let elem = document.querySelector('#raty-edit-<%= @review.id %>');
+          elem.innerHTML = '';
+          let opt = {
+            starOff: '<%= asset_path('star-off.png') %>',
+            starOn: '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            score: <%= @review.rating %>,
+            half: true,
+            readOnly: false
+          };
+          raty(elem, opt);
+        }
+      </script>
+
+      <div class="form-group mb-3">
+        <%= f.label :content, "レビュー内容" %>
+        <%= f.text_area :content, class: "form-control", rows: 4, placeholder: "レビュー内容を入力してください" %>
+      </div>
+
+      <div class="form-group mb-3">
+        <%= f.label :image, "画像をアップロード" %>
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <%= f.submit "保存", class: "btn btn-primary" %>
+        <%= link_to "戻る", store_review_path(@review.store), class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+
+    <hr>
+
+    <div class="mt-4">
+      <h5 class="text-danger">レビューを削除</h5>
+      <p>このレビューを削除する場合は、以下のボタンをクリックしてください。</p>
+      <%= link_to "削除する", store_review_path(@review.store, @review), 
+                    method: :delete, 
+                    data: { confirm: "本当に削除しますか？" }, 
+                    class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

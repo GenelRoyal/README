@@ -1,5 +1,10 @@
 class Store < ApplicationRecord
   has_many :reviews, dependent: :destroy
+
+  # 平均評価を計算するメソッド
+  def average_rating
+    reviews.average(:rating)&.round(1) || 0
+  end
   
   validates :name, presence: true
   validates :address, presence: true

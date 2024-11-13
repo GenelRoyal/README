@@ -1,40 +1,46 @@
 <div class='container my-5'>
+  <div class='row mb-4'>
+    <h3 class='text-center'>
+      <strong><span class='heading-title'>マイページ</span></strong>
+    </h3>
+  </div>
 
-  <h3 class='row mb-5'>
-    <strong><span class='heading-title'>マイページ</span></strong>
-  </h3>
-
-  <div class='row my-3'>
-    <div class='col-2'>
+  <div class='row my-4'>
+    <div class='col-8'>
       <h4><strong>登録情報</strong></h4>
     </div>
     
-    <!--ゲストユーザーは編集できなくしている-->
+    <!-- ゲストユーザーは編集できなくしている -->
     <% unless @user.guest_user? %>
-      <%= link_to "編集する", users_information_edit_path, class:"col-2 btn btn-success" %>
+      <div class='col-4 text-end'>
+        <%= link_to "編集する", users_information_edit_path, class:"btn btn-success" %>
+      </div>
     <% end %>
-    
   </div>
 
-  <table class="table table-bordered secondary row">
-    <tr class="col-6">
-      <th class="col-3 table-secondary">プロフィール画像</th>
-      <td class='col-6'><%= image_tag @user.get_image(300,200) %></td>
-    </tr>
+  <table class="table table-hover border mt-4">
+    <tbody>
+      <tr>
+        <th class="table-secondary text-center align-middle" style="width: 30%;">プロフィール画像</th>
+        <td class='text-center'>
+          <%= image_tag @user.get_image(300,200), class: "rounded shadow-sm img-fluid" %>
+        </td>
+      </tr>
 
-    <tr class="col-6">
-      <th class="col-3 table-secondary">氏名</th>
-      <td class='col-6'><%= @user.family_name %>　<%= @user.first_name %></td>
-    </tr>
+      <tr>
+        <th class="table-secondary text-center align-middle">氏名</th>
+        <td class='text-center'><%= @user.family_name %>　<%= @user.first_name %></td>
+      </tr>
 
-    <tr class="col-6">
-      <th class="col-3 table-secondary">カナ</th>
-      <td class='col-6'><%= @user.family_name_kana %>　<%= @user.first_name_kana %></td>
-    </tr>
+      <tr>
+        <th class="table-secondary text-center align-middle">カナ</th>
+        <td class='text-center'><%= @user.family_name_kana %>　<%= @user.first_name_kana %></td>
+      </tr>
 
-    <tr class="col-6">
-      <th class="col-3 table-secondary">メールアドレス</th>
-      <td class='col-6'><%= @user.email %></td>
-    </tr>
+      <tr>
+        <th class="table-secondary text-center align-middle">メールアドレス</th>
+        <td class='text-center'><%= @user.email %></td>
+      </tr>
+    </tbody>
   </table>
 </div>

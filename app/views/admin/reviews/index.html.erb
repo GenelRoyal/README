@@ -1,0 +1,50 @@
+<div class="container my-5">
+  <h3 class="text-center mb-4"><strong>全ユーザーの店舗レビュー一覧</strong></h3>
+
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      <%= link_to admin_review_path(review), class: "text-decoration-none" do %>
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title"><strong><%= review.title %></strong></h5>
+            <div id="raty-display-<%= review.id %>"></div>
+              <script>
+              {  
+              // scriptファイルをどのidの部分に配置するかを指定
+                let elem = document.querySelector('#raty-display-<%= review.id %>');
+                elem.innerHTML = '';
+                let opt = {  
+                  //星画像の指定などのオプションをここに記述,
+                    starOff: '<%= asset_path('star-off.png') %>',
+                    starOn: '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    score: <%= review.rating %>,
+                    half: true,
+                    readOnly: true
+                };
+                raty(elem,opt);
+              }
+              </script>
+
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                <strong>投稿者:</strong> <%= review.user.family_name %><%= review.user.first_name %>
+              </small>
+              <small class="text-muted">
+                <%= review.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+              </small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- ページネーション -->
+  <div class="row justify-content-center mt-4">
+    <%= paginate @reviews %>
+  </div>
+</div>

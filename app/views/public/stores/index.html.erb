@@ -1,19 +1,46 @@
 <div class="row my-5">
-  <div class="col-9 mt-2">
-    <h3><strong>店舗一覧(全<%= @stores_all.count %>件)</strong></h3>
+  <div class="col-12 mt-2">
+    <h3 class="mb-4 text-center"><strong>店舗一覧 (全<%= @stores_all.count %>件)</strong></h3>
+
+    
 
     <div class="row">
-    <% @stores.each do |store| %>
-      <div class="col-md-3 mb-4">
-        <%= link_to store_path(store) do %>
-          <p><%= image_tag store.get_image(200, 150) || "no_image.jpg", width: 200, height: 150 %></p>
-        <% end %>
-        <p><strong>店舗名</strong>　<%= store.name %></p>
-        <p><strong>¥<%= store.price.to_s(:delimited) %></strong></p>
-      </div>
-    <% end %>
-  　</div>
-    <div class="row justify-content-center ">
+      <% @stores.each do |store| %>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card shadow-sm h-100">
+            <%= link_to store_path(store), class: "text-decoration-none text-dark" do %>
+              <%= image_tag store.get_image(200, 150) || "no_image.jpg", class: "card-img-top", alt: "#{store.name}の画像", width: 200, height: 150 %>
+              <div class="card-body">
+                <h5 class="card-title"><strong><%= store.name %></strong></h5>
+                <div id="raty-display-<%= store.id %>" data-score="<%= store.average_rating %>"></div>
+                    <script>
+                    {  
+                    // scriptファイルをどのidの部分に配置するかを指定
+                      let elem = document.querySelector('#raty-display-<%= store.id %>');
+                      elem.innerHTML = '';
+                      let opt = {  
+                        //星画像の指定などのオプションをここに記述,
+                          starOff: '<%= asset_path('star-off.png') %>',
+                          starOn: '<%= asset_path('star-on.png') %>',
+                          starHalf: '<%= asset_path('star-half.png') %>',
+                          score: function() {
+                          return $(this).attr('data-score')
+                          },
+                          half: true,
+                          readOnly: true
+                      };
+                      raty(elem,opt);
+                    }
+                    </script>
+                <p class="card-text mt-2 text-muted">¥<%= store.price.to_s(:delimited) %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row justify-content-center">
       <%= paginate @stores %>
     </div>
   </div>

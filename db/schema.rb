@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_11_075312) do
+ActiveRecord::Schema.define(version: 2024_11_13_051533) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,23 +52,35 @@ ActiveRecord::Schema.define(version: 2024_11_11_075312) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "review_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "store_id", null: false
-    t.string "rating", null: false
+    t.float "rating", null: false
     t.string "title", null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_reviews_on_store_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.text "address", default: "", null: false
+    t.text "address", null: false
     t.string "tell_number", default: "", null: false
     t.integer "price", null: false
-    t.text "business_hours", default: "", null: false
-    t.text "content", default: "", null: false
+    t.text "business_hours", null: false
+    t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -92,4 +104,8 @@ ActiveRecord::Schema.define(version: 2024_11_11_075312) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
+  add_foreign_key "reviews", "stores"
+  add_foreign_key "reviews", "users"
 end

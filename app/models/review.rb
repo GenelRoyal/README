@@ -1,10 +1,11 @@
 class Review < ApplicationRecord
   belongs_to :store
   belongs_to :user
+  has_many :comments, dependent: :destroy
 
-  validates :content, presence: true
-  validates :rating, presence: true, inclusion: { in: 1..5 }
-
+  validates :content, :title, presence: true
+  validates :rating, presence: true, inclusion: { in: 1..5, message: 'は1から5の範囲で指定してください' }
+  
   has_one_attached :image
 
   def get_image(width, height)

@@ -1,29 +1,29 @@
+<h2 class="text-center text-success my-4"><span>全マシマシでお願いします！！</span></h2>
 
-<h2><span>全マシマシでお願いします！！</span></h2>
-
-<div class="row">
-  <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+<div class="row mb-4">
+  <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block sign_in mx-auto", method: :post %>
 </div>
 
-<div class='form-group row'>
-  <div class='col'>
-    <h4 class='text-center border-bottom'>
+<div class="form-group row">
+  <div class="col">
+    <h4 class="text-center border-bottom border-success pb-2 mb-4">
       新着店舗
     </h4>
-    <div class="d-flex flex-wrap gap-3" >
+    <div class="d-flex flex-wrap gap-4 justify-content-center">
       <% @stores.each do |store| %>
         <%= link_to store_path(store.id), class: "text-decoration-none" do %>
-          <div class="card" >
-            <%= image_tag store.get_image(300,300), class: "card-img-top rounded shadow-sm" %>
+          <div class="card shadow-sm" style="width: 18rem;">
+            <%= image_tag store.get_image(300, 300), class: "card-img-top rounded" %>
             <div class="card-body text-body">
               <h5 class="card-title text-primary"><%= store.name %></h5>
-              <p class="card-text text-primary">¥<%= store.price.to_s(:delimited) %></p>
+              <p class="card-text text-muted">¥<%= store.price.to_s(:delimited) %></p>
             </div>
           </div>
         <% end %>
       <% end %>
     </div>
-    <div class="d-flex">
-      <%= link_to "全ての店舗を見る >>", stores_path, class: "ms-auto right-link" %>
+    <div class="d-flex justify-content-end mt-3">
+      <%= link_to "全ての店舗を見る >>", stores_path, class: "btn btn-outline-primary right-link" %>
     </div>
+  </div>
 </div>

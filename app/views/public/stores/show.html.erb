@@ -1,34 +1,63 @@
 <div class="row my-5">
+  <!-- 店舗情報と画像 -->
   <div class="col-md-6 mt-5">
-    <div class="text-center">
-      <%= image_tag @store.get_image(300,300) || "no_image.jpg", width: 300, height: 200 %>
-      <div class="my-3">
-        <%= link_to "この店舗のレビューを見る", store_reviews_path(@store), class: "btn btn-success" %>
+  <%= render 'layouts/errors', obj: @store %>
+    <div class="card shadow-sm">
+      <div class="card-body text-center">
+        <%= image_tag @store.get_image(300,300) || "no_image.jpg", width: 300, height: 200, class: "rounded mb-3" %>
+        <div class="my-3">
+          <%= link_to "この店舗のレビューを見る", store_reviews_path(@store), class: "btn btn-success" %>
+        </div>
+        <div class="raty-display mb-2" id="raty-display" data-score="<%= @store.average_rating %>"></div> <!-- 店舗の平均評価（星表示） -->
+          <script>
+          {  
+          // scriptファイルをどのidの部分に配置するかを指定
+            let elem = document.querySelector('#raty-display');
+            elem.innerHTML = '';
+            let opt = {  
+              //星画像の指定などのオプションをここに記述,
+                starOff: '<%= asset_path('star-off.png') %>',
+                starOn: '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                score: function() {
+                return $(this).attr('data-score')
+                },
+                half: true,
+                readOnly: true
+            };
+            raty(elem,opt);
+          }
+          </script>
+        <p class="text-muted">平均評価: <%= @store.average_rating %> / 5</p>
       </div>
     </div>
   </div>
 
+  <!-- 店舗詳細情報 -->
   <div class="col-md-6 mt-5">
-    <h4 class="my-3"><strong><%= @store.name %></strong></h4>
-    <p class="mb-3"><strong>住所:</strong> <%= @store.address %></p>
-    <p class="mb-3"><strong>電話番号:</strong> <%= @store.tell_number %></p>
-    <p class="mb-3"><strong>価格:</strong> <%= @store.price.to_s(:delimited) %>円</p>
-    <p class="mb-3"><strong>営業時間:</strong> <%= @store.business_hours %></p>
-    <p class="mb-3"><strong>説明:</strong> <%= @store.content %></p>
+    <div class="card shadow-sm p-4">
+      <h4 class="card-title my-3 text-center"><strong><%= @store.name %></strong></h4>
+      <p class="mb-3"><strong>住所:</strong> <%= @store.address %></p>
+      <p class="mb-3"><strong>電話番号:</strong> <%= @store.tell_number %></p>
+      <p class="mb-3"><strong>価格:</strong> ¥<%= @store.price.to_s(:delimited) %></p>
+      <p class="mb-3"><strong>営業時間:</strong> <%= @store.business_hours %></p>
+      <p class="mb-3"><strong>説明:</strong> <%= @store.content %></p>
+    </div>
   </div>
 </div>
 
+<!-- レビュー投稿フォーム -->
 <% if user_signed_in? %>
   <div class="row justify-content-center my-5">
     <div class="col-md-8">
-      <%= form_with(model: [@store, @store.reviews.build], local: true) do |f| %>
-        <div class="card p-4">
-          <h5 class="text-center mb-4">レビュー投稿</h5>
+      <div class="card shadow-sm p-4">
+        <h5 class="text-center mb-4">レビュー投稿</h5>
+        <%= form_with(model: [@store, @store.reviews.build], local: true) do |f| %>
           <table class="table table-borderless">
             <tr>
               <td><%= f.label :rating, "評価", class: "form-label" %></td>
               <td>
-                <div class="raty" data-score="0"></div> <!-- Raty.jsで星評価を作成 -->
+                <div id="post_raty"></div> <!-- 星評価の入力 -->
               </td>
             </tr>
             <tr>
@@ -49,8 +78,23 @@
               </td>
             </tr>
           </table>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>
+
+<div id="post_raty"></div>
+<script>
+  // scriptファイルをどのidの部分に配置するかを指定
+  let elem = document.querySelector('#post_raty');
+  let opt = {  
+    //星画像の指定などのオプションをここに記述,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      scoreName: 'review[rating]',
+      half: true,
+   };
+  raty(elem,opt);
+</script>

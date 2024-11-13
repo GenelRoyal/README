@@ -30,13 +30,15 @@ Rails.application.routes.draw do
     patch 'users/withdraw'
     resources :users, only: [:show]
     resources :stores, only: [:index, :show] do
-      resources :reviews, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+      resources :reviews, only: [:create, :index, :show, :edit, :update, :destroy] do
+        resources :comments, only: [:create]
+      end
     end
   end
 
   namespace :admin do
-
     resources :stores, only: [:new, :create, :index, :show, :edit, :update, :destroy]
     resources :users, only:[:index, :show, :edit, :update, :destroy]
+    resources :reviews, only:[:index, :show, :destroy]
   end
 end

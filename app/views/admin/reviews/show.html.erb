@@ -1,0 +1,43 @@
+<div class="container my-5">
+  <div class="card shadow-sm p-4">
+    <h3 class="card-title text-center mb-4"><strong>レビュー詳細</strong></h3>
+    <div class="card-body">
+    <p><h5><strong>タイトル:</strong> <%= @review.title %></h5>
+    <div id="raty-display-<%= @review.id %>"></div></p>
+              <script>
+              {  
+              // scriptファイルをどのidの部分に配置するかを指定
+                let elem = document.querySelector('#raty-display-<%= @review.id %>');
+                elem.innerHTML = '';
+                let opt = {  
+                  //星画像の指定などのオプションをここに記述,
+                    starOff: '<%= asset_path('star-off.png') %>',
+                    starOn: '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    score: <%= @review.rating %>,
+                    half: true,
+                    readOnly: true
+                };
+                raty(elem,opt);
+              }
+              </script>
+      <% if @review.image.present? %>
+        <p><%= image_tag @review.image, width: 300, height: 200, class: "rounded mb-3" %></p>
+      <% else %>
+        <p style="color: red;">※画像はありません。</p>
+      <% end %>
+      <p><strong>コメント:</strong> <%= @review.content %></p>
+      <hr>
+      <p><strong>投稿者:</strong> <%= link_to admin_user_path(@review.user) do %>
+        <%= @review.user.family_name %><%= @review.user.first_name %>
+      <% end %></p>
+      <p><strong>店舗:</strong> <%= @review.store.name %></p>
+      <p class="text-muted"><strong>投稿日:</strong> <%= @review.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+    </div>
+
+    <!-- 削除ボタン -->
+    <div class="text-center mt-4">
+      <%= link_to "レビューを削除する", admin_review_path(@review), method: :delete, data: { confirm: "このレビューを削除しますか？" }, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>
