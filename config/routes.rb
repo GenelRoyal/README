@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     patch 'users/information' => 'users#update'
     get 'users/unsubscribe'
     patch 'users/withdraw'
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+      resources :reviews, only: [:index], controller: 'public/reviews'
+    end
     resources :stores, only: [:index, :show] do
       resources :reviews, only: [:create, :index, :show, :edit, :update, :destroy] do
         resources :comments, only: [:create]

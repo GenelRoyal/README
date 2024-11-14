@@ -2,6 +2,11 @@
   <div class="card shadow-sm">
     <div class="card-body">
       <h3 class="card-title"><strong><%= @review.title %></strong></h3>
+
+      <p>
+        <strong>店舗名:</strong> <%= link_to @review.store.name, store_path(@review.store), class: "text-decoration-none" %>
+      </p>
+
       <p><div id="raty-display-<%= @review.id %>"></div></p>
               <script>
               {  

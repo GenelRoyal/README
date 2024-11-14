@@ -8,6 +8,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews.page(params[:page]).per(6)
+    #@store = Store.find(params[:store_id])
+    #@reviews = @store.reviews.page(params[:page]).per(6)
   end
 
   def edit

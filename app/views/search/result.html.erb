@@ -1,27 +1,43 @@
-<h1>検索結果</h1>
+<h1 class="my-4">検索結果</h1>
 
 <% if @results.any? %>
   <% if @target == "user" %>
-    <h2>会員検索結果</h2>
-    <% @results.each do |user| %>
-      <p>
-        名前: <%= link_to user.family_name + user.first_name, user_path(user) %>
-      </p>
-    <% end %>
-  <% elsif @target == "store" %>
-    <h2>店舗検索結果</h2>
-    <% @results.each do |store| %>
-      <p>
-        店舗名: <%= link_to store.name, store_path(store) %><br>
-        住所: <%= store.address %><br>
-        電話番号: <%= store.tell_number %><br>
-        価格: ¥<%= store.price.to_s(:delimited) %><br>
-        営業時間: <%= store.business_hours %><br>
-        説明: <%= store.content %>
-      </p>
+    <h2 class="mb-3">会員検索結果</h2>
+    <div class="row">
+      <% @results.each do |user| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">名前: <%= link_to user.family_name + user.first_name, user_path(user) %></h5>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-    <% end %>
+  <% elsif @target == "store" %>
+    <h2 class="mb-3">店舗検索結果</h2>
+    <div class="row">
+      <% @results.each do |store| %>
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                店舗名: <%= link_to store.name, store_path(store) %>
+              </h5>
+              <p class="card-text">
+                <strong>住所:</strong> <%= store.address %><br>
+                <strong>電話番号:</strong> <%= store.tell_number %><br>
+                <strong>価格:</strong> ¥<%= store.price.to_s(:delimited) %><br>
+                <strong>営業時間:</strong> <%= store.business_hours %><br>
+                <strong>説明:</strong> <%= truncate(store.content, length: 80) %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 <% else %>
-  <p>該当する結果は見つかりませんでした。</p>
+  <p class="text-muted">該当する結果は見つかりませんでした。</p>
 <% end %>
