@@ -8,8 +8,8 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       redirect_to store_review_path(@review.store, @review), notice: 'コメントが投稿されました。'
     else
-      flash.now[:alert] = 'コメントの投稿に失敗しました。'
-      render 'reviews/show'  # エラーがあればレビュー詳細ページを再表示
+      flash.now[:alert] = 'コメントの投稿に失敗しました。'+ @comment.errors.full_messages.join(", ")
+      render 'public/reviews/show'
     end
   end
 
