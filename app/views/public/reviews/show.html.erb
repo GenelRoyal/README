@@ -25,6 +25,13 @@
                 raty(elem,opt);
               }
               </script>
+
+      <!-- タグリスト -->
+      <% @review_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,store_reviews_path(params[:store_id], tag_id: tag.id) %>
+      <% end %>
+
       <% if @review.image.present? %>
         <p><%= image_tag @review.image, width: 300, height: 200, class: "rounded mb-3" %></p>
       <% else %>

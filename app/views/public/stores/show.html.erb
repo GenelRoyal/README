@@ -73,6 +73,10 @@
               <td><%= f.text_area :content, class: "form-control" %></td>
             </tr>
             <tr>
+              <td><%= f.label "タグ (カンマ区切り)", class: "form-label" %></td>
+              <td><%= f.text_field :name, value: @tag_list, class: "form-control", placeholder: "例: ニンニク, アブラ, カラメ" %></td>
+            </tr>
+            <tr>
               <td colspan="2" class="text-center">
                 <%= f.submit "レビューを投稿する", class: "btn btn-primary mt-3" %>
               </td>

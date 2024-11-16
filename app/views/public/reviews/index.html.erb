@@ -1,5 +1,13 @@
 <div class="container my-5">
-  <h3 class="text-center mb-4"><strong>レビュー一覧 (全<%= @reviews.count %>件)</strong></h3>
+  <h3 class="text-center"><strong>レビュー一覧 (全<%= @reviews.count %>件)</strong></h3>
+  <!--タグリスト-->
+  <div class="text-center mb-4">
+    <% @tag_list.each do |list|%>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+      <%=link_to list.name,store_reviews_path(params[:store_id], tag_id: list.id) %>
+      <%="(#{list.reviews.count})" %>
+    <% end %>
+  </div>
 
   <div class="row">
   <% @reviews.each do |review| %>
@@ -26,6 +34,7 @@
                 raty(elem,opt);
               }
               </script>
+
             <hr>
             <div class="d-flex justify-content-between align-items-center">
               <small class="text-muted">

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'search', to: 'search#result'
+  get "search_tag" => "reviews#search_tag"
 
   # 顧客用
   # URL /customers/sign_in ...
