@@ -41,6 +41,11 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def liked_reviews
+    @user = User.find(params[:id])
+    @liked_reviews = @user.liked_reviews.includes(:store)
+  end
+
   private
 
   def user_params

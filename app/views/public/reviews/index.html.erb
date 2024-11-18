@@ -35,6 +35,10 @@
               }
               </script>
 
+              <div id="<%= review.id %>">
+                <%= render 'public/likes/like', review: review %>
+              </div>
+
             <hr>
             <div class="d-flex justify-content-between align-items-center">
               <small class="text-muted">

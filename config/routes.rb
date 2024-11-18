@@ -31,10 +31,14 @@ Rails.application.routes.draw do
     patch 'users/withdraw'
     resources :users, only: [:show] do
       resources :reviews, only: [:index], controller: 'public/reviews'
+      member do
+        get :liked_reviews
+      end
     end
     resources :stores, only: [:index, :show] do
       resources :reviews, only: [:create, :index, :show, :edit, :update, :destroy] do
         resources :comments, only: [:create]
+        resource :likes, only: [:create, :destroy]
       end
     end
   end

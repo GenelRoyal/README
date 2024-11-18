@@ -32,6 +32,10 @@
         <%= link_to tag.name,store_reviews_path(params[:store_id], tag_id: tag.id) %>
       <% end %>
 
+      <div id="<%= @review.id %>">
+        <%= render 'public/likes/like', review: @review %>
+      </div>
+
       <% if @review.image.present? %>
         <p><%= image_tag @review.image, width: 300, height: 200, class: "rounded mb-3" %></p>
       <% else %>

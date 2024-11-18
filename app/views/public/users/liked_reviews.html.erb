@@ -1,0 +1,52 @@
+<h1 class="text-center my-4">
+  <%= @user.family_name %><%= @user.first_name %> さんが「いいね」したレビュー
+</h1>
+
+<% if @liked_reviews.any? %>
+  <div class="container">
+    <div class="row">
+      <% @liked_reviews.each do |review| %>
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">
+                <strong>店舗名:</strong> 
+                <%= link_to review.store.name, store_path(review.store), class: "text-decoration-none text-primary" %>
+              </h5>
+              <p class="card-text"><strong>タイトル:</strong> <%= review.title %></p>
+              <div id="raty-display-<%= review.id %>" class="mb-3"></div>
+              <script>
+                {
+                  let elem = document.querySelector('#raty-display-<%= review.id %>');
+                  elem.innerHTML = '';
+                  let opt = {  
+                    starOff: '<%= asset_path('star-off.png') %>',
+                    starOn: '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    score: <%= review.rating %>,
+                    half: true,
+                    readOnly: true
+                  };
+                  raty(elem, opt);
+                }
+              </script>
+
+              <p class="mb-3"><strong>いいね数:</strong> <%= review.likes.count %></p>
+              <% if review.image.present? %>
+                <div class="text-center mb-3">
+                  <%= image_tag review.image, class: "img-fluid rounded shadow-sm", style: "max-height: 200px;" %>
+                </div>
+              <% else %>
+                <p class="text-danger text-center">※画像はありません。</p>
+              <% end %>
+              <p><strong>レビュー内容:</strong></p>
+              <p class="card-text"><%= review.content %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <p class="text-center text-muted">まだ「いいね」したレビューがありません。</p>
+<% end %>

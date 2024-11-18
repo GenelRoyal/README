@@ -16,7 +16,7 @@
             <%= link_to "店舗一覧", stores_path, class: "btn btn-outline-dark" %>
           </li>
           <li>
-            <%= link_to "いいね一覧", "#", class: "btn btn-outline-dark" %>
+            <%= link_to "いいね一覧", liked_reviews_user_path(current_user), class: "btn btn-outline-dark" %>
           </li>
           <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark" %></li>
