@@ -1,8 +1,8 @@
 <header>
   <nav class="navbar navbar-expand-lg">
-    <h1><%= link_to "LOGO", root_path %></h1>
+    <h1><%= link_to "全マシマシでお願いします！", root_path %></h1>
     <% if user_signed_in? %>
-      ようこそ、<%= current_user.family_name + current_user.first_name %>さん！
+      <span class="welcome-message">ようこそ、<%= current_user.family_name + current_user.first_name %>さん！</span>
     <% end %>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">

@@ -1,0 +1,225 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ body {
+  background-color: #ffd900; /* 二郎系をイメージした明るい黄色 */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.navbar {
+  background-color: #333; /* ヘッダーの背景を黒に */
+  padding: 15px;
+}
+
+.navbar h1 a {
+  color: #ffd900; /* ロゴを目立つ黄色に */
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .btn {
+  color: #333 !important;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 5px;
+  margin: 0 5px; /* 各リンクの間隔 */
+  padding: 8px 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar-nav .btn:hover {
+  background-color: #ffd900;
+  color: #333 !important;
+  border-color: #ffd900;
+}
+
+.navbar-nav .btn:active {
+  background-color: #e6c800; /* 押されたときの少し濃い黄色 */
+  border-color: #e6c800;
+}
+
+.collapse .navbar-nav {
+  justify-content: flex-end;
+}
+
+.welcome-message {
+  color: #fff; /* 白文字に設定 */
+  font-size: 1.2rem; /* 必要に応じて文字サイズを調整 */
+  font-weight: bold; /* 文字を少し太くする */
+}
+
+/* リスト間隔 */
+.navbar-nav li {
+  margin-bottom: 10px; /* 各リスト項目に余白を追加 */
+}
+
+.footer {
+  background-color: #333; /* 黒背景 */
+  padding: 20px 0;
+  text-align: center;
+}
+
+/* フッター内のテキスト */
+.footer-text {
+  color: #ffd900; /* 二郎系らしい黄色 */
+  font-size: 1rem; /* フォントサイズ */
+  font-weight: bold; /* 太字で目立たせる */
+  letter-spacing: 1px; /* 文字間隔 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* 文字に影を付けて立体感 */
+}
+
+
+
+/* 全体のスタイリング */
+.search-bar {
+  background-color: #333; /* 背景を黒にして目立たせる */
+  padding: 20px;
+  border-radius: 8px; /* 角を丸くして柔らかい印象に */
+  margin: 20px auto; /* 上下中央寄せ */
+  width: 80%; /* 横幅を80%にして中央揃え */
+  max-width: 600px; /* 最大幅を設定 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影で立体感を付ける */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 入力フォーム全体の配置 */
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* 各入力要素の間隔 */
+  justify-content: center; /* フォーム全体を中央揃え */
+  align-items: center;
+}
+
+/* セレクトボックス */
+.search-select {
+  width: 40%; /* セレクトボックスの横幅 */
+  min-width: 120px;
+  padding: 10px;
+  border: 2px solid #ffd900;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+/* キーワード入力 */
+.search-keyword {
+  flex: 1; /* フレキシブルに幅を確保 */
+  padding: 10px;
+  border: 2px solid #ffd900;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+/* 検索ボタン */
+.search-button {
+  background-color: #ffd900;
+  color: #333;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #e6c800;
+  transform: scale(1.05); /* ホバーで少し大きくする */
+}
+
+.search-button:active {
+  background-color: #ccad00;
+  transform: scale(1); /* 押されたときに元のサイズに戻す */
+}
+
+
+
+/* 全体背景色の調整 */
+.about-section {
+  background-color: #f8f9fa; /* 背景を明るい灰色に */
+  padding: 40px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトルのスタイル */
+.about-title {
+  color: #333; /* 力強い印象の黒色 */
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase; /* 大文字表現で力強く */
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+/* 説明文のスタイル */
+.about-description {
+  color: #555; /* 少し薄い文字色で落ち着いた印象に */
+  font-size: 1.2rem;
+  line-height: 1.8; /* 読みやすさを確保 */
+}
+
+/* 画像ギャラリーのスタイル */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* グリッドレイアウト */
+  gap: 15px; /* 画像間のスペース */
+  margin-top: 30px;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* 横長の画像比率 */
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 画像に立体感 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.05); /* ホバー時に拡大 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 背景画像の適用 */
+.src1 {
+  background-image: url('/assets/about1.jpg');
+}
+
+.src2 {
+  background-image: url('/assets/about2.jpg');
+}
+
+.src3 {
+  background-image: url('/assets/about3.jpg');
+}
+
+.src4 {
+  background-image: url('/assets/about4.jpg');
+}

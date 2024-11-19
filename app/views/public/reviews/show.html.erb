@@ -45,7 +45,7 @@
       <hr>
       <div class="d-flex justify-content-between align-items-center">
         <small class="text-muted">
-          <strong>投稿者:</strong> <%= @review.user.family_name %><%= @review.user.first_name %>
+          <strong>投稿者:</strong> <%= link_to @review.user.family_name + @review.user.first_name, user_path(@review.user) %>
         </small>
         <small class="text-muted">
           <%= @review.created_at.strftime("%Y年%m月%d日") %>
@@ -63,16 +63,22 @@
   <!-- コメントフォーム -->
   <div class="mt-4">
     <h5>コメントを追加</h5>
-    <%= form_with url: store_review_comments_path(@review.store, @review), model: @comment, local: true do |f| %>
-      <div class="form-group mb-2">
-        <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "コメントを入力してください..." %>
-      </div>
-      <%= f.submit "投稿", class: "btn btn-success" %>
+    <% if user_signed_in? %>
+      <%= form_with url: store_review_comments_path(@review.store, @review), model: @comment, local: true do |f| %>
+        <div class="form-group mb-2">
+          <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "コメントを入力してください..." %>
+        </div>
+        <%= f.submit "投稿", class: "btn btn-success" %>
+      <% end %>
+    <% else %>
+      <p>
+        <%= link_to "コメントするにはログインしてください", new_user_session_path, class: "btn btn-primary" %>
+      </p>
     <% end %>
+  </div>
 
   <hr>
 
-  <div>
   <h5>コメント一覧</h5>
   
   <% if @review.comments.any? %>
@@ -96,5 +102,5 @@
   <% else %>
     <p>コメントはまだありません。</p>
   <% end %>
-  </div>
+
 </div>

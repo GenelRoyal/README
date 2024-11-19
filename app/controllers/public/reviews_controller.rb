@@ -1,5 +1,5 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   before_action :set_store
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 

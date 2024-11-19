@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  before_action :authenticate_user! # ログインしていないユーザーのアクセスを制限
+  #before_action :authenticate_user! # ログインしていないユーザーのアクセスを制限
 
   def result
     @keyword = params[:keyword]
