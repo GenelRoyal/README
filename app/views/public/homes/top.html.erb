@@ -25,3 +25,16 @@
     </div>
   </div>
 </div>
+
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_Key'] %>&callback=initMap" async defer></script>
+<script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: 35.1803, lng: 136.9066 }, // 愛知県の中心座標
+      zoom: 10,
+    });
+
+    
+</script>

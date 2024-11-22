@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   get 'search', to: 'search#result'
   get "search_tag" => "reviews#search_tag"
 
@@ -34,6 +38,9 @@ Rails.application.routes.draw do
       member do
         get :liked_reviews
       end
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
     end
     resources :stores, only: [:index, :show] do
       resources :reviews, only: [:create, :index, :show, :edit, :update, :destroy] do
