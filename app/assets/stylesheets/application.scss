@@ -209,17 +209,17 @@
 
 /* 背景画像の適用 */
 .src1 {
-  background-image: url('/assets/about1.jpg');
+  background-image: image-url('about1.jpg');
 }
 
 .src2 {
-  background-image: url('/assets/about2.jpg');
+  background-image: image-url('about2.jpg');
 }
 
 .src3 {
-  background-image: url('/assets/about3.jpg');
+  background-image: image-url('about3.jpg');
 }
 
 .src4 {
-  background-image: url('/assets/about4.jpg');
+  background-image: image-url('about4.jpg');
 }
