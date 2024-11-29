@@ -47,7 +47,7 @@
     <div class='col-2'></div>
     <div class='col-5'>
       <%= link_to '編集する', edit_admin_user_path(@user.id), class: 'btn btn-success' %>
-      <%= link_to 'レビュー履歴一覧', "#", class: 'btn btn-primary ml-5' %>
+      <%= link_to 'レビュー履歴一覧', admin_reviews_path(@user.id), class: 'btn btn-primary ml-5' %>
     </div>
   </div>
   

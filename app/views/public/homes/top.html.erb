@@ -11,7 +11,7 @@
       <% @stores.each do |store| %>
         <%= link_to store_path(store.id), class: "text-decoration-none" do %>
           <div class="card shadow-sm" style="width: 18rem;">
-            <%= image_tag store.get_image(300, 300), class: "card-img-top rounded" %>
+            <%= image_tag store.get_image(300, 200), class: "card-img-top rounded" %>
             <div class="card-body text-body">
               <h5 class="card-title text-primary"><%= store.name %></h5>
               <p class="card-text text-muted">¥<%= store.price.to_s(:delimited) %></p>
